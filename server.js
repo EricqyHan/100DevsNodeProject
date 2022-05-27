@@ -28,34 +28,55 @@ const server = http.createServer((req, res) => {
     });
   } else if (page == "/api") {
     if ("student" in params) {
-      if (params["student"] == "leon") {
+      let rps = ["rock", "paper", "scissor"];
+      let rpsPick = Math.floor(Math.random() * rps.length);
+      let rpsResult = rps[rpsPick];
+      let winlose = "";
+      res.writeHead(200, { "Content-Type": "application/json" });
+      if (params["student"] == "rock") {
+        if (userName == "rock") {
+          console.log("tie");
+          const objToJson = {
+            //name: "leon",
+            //status: "Boss Man",
+            //currentOccupation: "Baller",
+            wins: "tie",
+            flip: rpsResult,
+          };
+          res.end(JSON.stringify(objToJson));
+        }
+        //   res.writeHead(200, { "Content-Type": "application/json" });
+        //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
+
+        //   res.end(JSON.stringify(objToJson));
+      } //student = leon
+      else if (params["student"] == "paper") {
         res.writeHead(200, { "Content-Type": "application/json" });
         //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
-        let rps = ["rock", "paper", "scissor"];
-        let rpsPick = Math.floor(Math.random() * rps.length);
-        let rprResult = rps[rpsPick];
-       
+
         const objToJson = {
-          name: "leon",
-          status: "Boss Man",
-          currentOccupation: "Baller",
+          //name: "leon",
+          //status: "Boss Man",
+          //currentOccupation: "Baller",
+          //  winlose: winlose,
           flip: rprResult,
         };
         res.end(JSON.stringify(objToJson));
-      } //student = leon
-      else if (params["student"] != "leon") {
+      } else if (params["student"] == "scissor") {
         res.writeHead(200, { "Content-Type": "application/json" });
+        //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
+
         const objToJson = {
-          name: "unknown",
-          status: "unknown",
-          currentOccupation: "unknown",
-          flip: "unknown",
+          //name: "leon",
+          //status: "Boss Man",
+          //currentOccupation: "Baller",
+          //  winlose: winlose,
+          flip: rprResult,
         };
         res.end(JSON.stringify(objToJson));
-      } //student != leon
-    } //student if
-  } //else if
-  else if (page == "/css/style.css") {
+      }
+    }
+  } else if (page == "/css/style.css") {
     fs.readFile("css/style.css", function (err, data) {
       res.write(data);
       res.end();
