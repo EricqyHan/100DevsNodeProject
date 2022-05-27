@@ -6,12 +6,7 @@ async function makeReq() {
   const data = await res.json();
 
   console.log(data);
-  //   document.querySelector("#personName").textContent = data.name;
-  //   document.querySelector("#personStatus").textContent = data.status;
-  //   document.querySelector("#personOccupation").textContent =
-  //      data.currentOccupation;
+
   document.querySelector("#coinFlip").textContent = data.flip;
-  
-  document.querySelector("#winlose").textContent = data.wins;
-  
+  document.querySelector("#winlose").textContent = data.winsTiesLoses;
 }

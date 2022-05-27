@@ -28,51 +28,60 @@ const server = http.createServer((req, res) => {
     });
   } else if (page == "/api") {
     if ("student" in params) {
+      //  RPS variables
       let rps = ["rock", "paper", "scissor"];
       let rpsPick = Math.floor(Math.random() * rps.length);
-      let rpsResult = rps[rpsPick];
-      let winlose = "";
-      res.writeHead(200, { "Content-Type": "application/json" });
+      let rpsRandomPick = rps[rpsPick];
+      let winLossTie = ["wins", "lose", "ties"];
       if (params["student"] == "rock") {
-        if (userName == "rock") {
-          console.log("tie");
-          const objToJson = {
-            //name: "leon",
-            //status: "Boss Man",
-            //currentOccupation: "Baller",
-            wins: "tie",
-            flip: rpsResult,
-          };
-          res.end(JSON.stringify(objToJson));
+        res.writeHead(200, { "Content-Type": "application/json" });
+        // wlt = wins, loss, or tie
+        let wlt;
+        if (rpsPick === 0) {
+          wlt = winLossTie[2];
+        } else if (rpsPick === 1) {
+          wlt = winLossTie[1];
+        } else {
+          wlt = winLossTie[0];
         }
-        //   res.writeHead(200, { "Content-Type": "application/json" });
-        //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
-
-        //   res.end(JSON.stringify(objToJson));
+        const objToJson = {
+          flip: rpsRandomPick,
+          winsTiesLoses: wlt,
+        };
+        console.log(rpsRandomPick + rpsPick);
+        res.end(JSON.stringify(objToJson));
       } //student = leon
       else if (params["student"] == "paper") {
-        res.writeHead(200, { "Content-Type": "application/json" });
-        //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
-
+        // wlt = wins, loss, or tie
+        let wlt;
+        if (rpsPick === 0) {
+          wlt = winLossTie[0];
+        } else if (rpsPick === 1) {
+          wlt = winLossTie[2];
+        } else {
+          wlt = winLossTie[1];
+        }
         const objToJson = {
-          //name: "leon",
-          //status: "Boss Man",
-          //currentOccupation: "Baller",
-          //  winlose: winlose,
-          flip: rprResult,
+          flip: rpsRandomPick,
+          winsTiesLoses: wlt,
         };
+        console.log(rpsRandomPick + rpsPick);
         res.end(JSON.stringify(objToJson));
       } else if (params["student"] == "scissor") {
-        res.writeHead(200, { "Content-Type": "application/json" });
-        //let flipRes = Math.ceil(Math.random() * 2) === 1 ? "heads" : "tails";
-
+        // wlt = wins, loss, or tie
+        let wlt;
+        if (rpsPick === 0) {
+          wlt = winLossTie[1];
+        } else if (rpsPick === 1) {
+          wlt = winLossTie[0];
+        } else {
+          wlt = winLossTie[2];
+        }
         const objToJson = {
-          //name: "leon",
-          //status: "Boss Man",
-          //currentOccupation: "Baller",
-          //  winlose: winlose,
-          flip: rprResult,
+          flip: rpsRandomPick,
+          winsTiesLoses: wlt,
         };
+        console.log(rpsRandomPick + rpsPick);
         res.end(JSON.stringify(objToJson));
       }
     }
