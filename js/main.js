@@ -9,4 +9,7 @@ async function makeReq() {
 
   document.querySelector("#coinFlip").textContent = data.flip;
   document.querySelector("#winlose").textContent = data.winsTiesLoses;
+  document.querySelector("#wins").textContent = data.win;
+  document.querySelector("#loses").textContent = data.lose;
+  document.querySelector("#ties").textContent = data.tie;
 }

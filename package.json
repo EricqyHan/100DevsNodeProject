@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "cheerio": "^1.0.0-rc.11",
-    "figlet": "^1.5.2"
+    "figlet": "^1.5.2",
+    "node-localStorage": "^0.0.1"
   }
 }
